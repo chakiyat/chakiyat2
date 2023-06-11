@@ -45,7 +45,9 @@ RUN echo "VNC_PASSWORD: $VNC_PASSWORD"
 # Set the VNC password
 RUN x11vnc -storepasswd mypass /etc/x11vnc.pass
 #RUN printf "%s\n" "${VNC_PASSWORD}" | x11vnc -storepasswd - /etc/x11vnc.pass
-CMD printf "%s\n" ${PW_VAR}" | tee /usr/share/novnc/vnc_password.txt && cat /usr/share/novnc/vnc_password.txt
+# one of these should make a text file with the -e arg for vnc password
+CMD printf "%s\n" "${VNC_PASSWORD}" | tee /usr/share/novnc/CMD_vnc_password.txt && cat /usr/share/novnc/CMD_vnc_password.txt
+CMD printf "%s\n" "${VNC_PASSWORD}" | tee /usr/share/novnc/RUN_vnc_password.txt && cat /usr/share/novnc/RUN_vnc_password.txt
 
 # Expose ports for NoVNC and VNC
 EXPOSE 8080
