@@ -4,13 +4,13 @@
 echo "VNC_PASSWORD: $VNC_PASSWORD"
 if [ -n "$VNC_PASSWORD" ]; then
   echo "$VNC_PASSWORD" > /etc/x11vnc.pass
-  echo "$VNC_PASSWORD" > /usr/share/novnc/vnc_password.txt
+  # echo "$VNC_PASSWORD" > /usr/share/novnc/vnc_password.txt # for debugging
 fi
 
 # if vnc_resolution.txt in http root dir, use the value there for vnc resolution
-if [ -f "/usr/share/novnc/vnc_resolution.txt" ]; then
-  VNC_RESOLUTION=$(head -n 1 /usr/share/novnc/vnc_resolution.txt)
-fi
+#if [ -f "/usr/share/novnc/vnc_resolution.txt" ]; then
+#  VNC_RESOLUTION=$(head -n 1 /usr/share/novnc/vnc_resolution.txt)
+#fi
 if [ -z "$VNC_RESOLUTION" ]; then
   VNC_RESOLUTION="800x600"
 fi
