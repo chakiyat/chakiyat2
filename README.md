@@ -20,7 +20,7 @@ How to use this
 
 2) build dockerfile 
  $ ```cd Docker-Ubuntu23-VNC ```
- $ ``docker build ./ -t imagename```
+ $ ```docker build ./ -t imagename```
  
 3) Start the container:
  $ ```docker run -d -p 8080:8080 -p 5900:5900 -e VNC_PASSWORD=1234 -e VNC_RESOLUTION=640x480x16 imagename:latest```
