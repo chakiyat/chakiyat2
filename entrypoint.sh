@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# Set the password from "docker run -e VNC_PASSWORD"
+# Set the password from docker-run
 echo "VNC_PASSWORD: $VNC_PASSWORD"
 if [ -n "$VNC_PASSWORD" ]; then
   echo "$VNC_PASSWORD" > /etc/x11vnc.pass
   echo "$VNC_PASSWORD" > /usr/share/novnc/vnc_password.txt
 fi
 
-# Start the Xvfb server
+# if vnc_resolution.txt in http root dir, use the value there for vnc resolution
+if [ -f "/usr/share/novnc/vnc_resolution.txt" ]; then
+  VNC_RESOLUTION=$(head -n 1 /usr/share/novnc/vnc_resolution.txt)
+fi
 if [ -z "$VNC_RESOLUTION" ]; then
   VNC_RESOLUTION="800x600"
 fi
@@ -27,7 +30,6 @@ echo -e "[begin] (fluxbox)\n\
 fluxbox &
 
 # Start x11vnc server
-#11vnc -display :1.0 -rfbauth /etc/x11vnc.pass -forever &
 x11vnc -passwdfile /etc/x11vnc.pass -display :1.0 -forever &
 
 # Start the NoVNC server
