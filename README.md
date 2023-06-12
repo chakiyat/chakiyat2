@@ -26,9 +26,3 @@ How to use this
  $ ```docker run -d -p 8080:8080 -p 5900:5900 -e VNC_PASSWORD=1234 -e VNC_RESOLUTION=640x480x16 imagename:latest```
 
 
-
-After container run and creation, the VNC resolution can be updated or re-set by such:
-echo "1920x1080x16" > /usr/share/novnc/vnc_resolution.txt #currently not working#
-
-
-every time the container starts, after it is created using docker run, the container is checking for this vnc_resolution file. if it is not found, it will use whatever $VNC_RESOLUTION is set to at container creation time 
